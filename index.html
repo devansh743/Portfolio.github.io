@@ -7,6 +7,8 @@
     <meta name="description" content="Devansh Langaliya | B.Tech CSE Student & Aspiring Software Engineer. Portfolio showcasing projects, skills, and coding profiles.">
     <meta name="keywords" content="Devansh Langaliya, Software Engineer, Web Developer, CSE Student, Portfolio">
     <meta name="author" content="Devansh Langaliya">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -168,10 +170,52 @@
             header h1 { font-size: 1.6rem; }
             section { padding: 0 10px; }
         }
+        .navbar {
+            background: #111827;
+            padding: 10px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar a {
+            margin: 0 12px;
+            color: #e5e7eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .navbar a:hover {
+            color: #60a5fa;
+        }
+        h2 {
+            padding-top: 30px;
+            border-bottom: 3px solid #2563eb;
+            display: inline-block;
+        }
+        .card {
+            margin-top: 15px;
+        }
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
     </style>
 </head>
 <body>
 
+<nav class="navbar">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#coding">Coding Profiles</a>
+    <a href="#contact">Contact</a>
+</nav>
 <header>
     <h1>Devansh Langaliya</h1>
     <p>B.Tech CSE Student | Aspiring Software Engineer</p>
@@ -186,7 +230,7 @@
     </div>
 </header>
 
-<section class="about">
+<section id="about" class="about hidden">
     <h2>About Me</h2>
     <p>
         I am a Computer Science Engineering undergraduate with a strong
@@ -203,7 +247,7 @@
 </section>
 
 
-<section>
+<section id="skills" class="hidden">
     <h2>Skills</h2>
     <div class="skills">
         <div class="card">
@@ -258,7 +302,7 @@
     </div>
 </section> -->
 
-<section>
+<section id="coding">
     <h2>Coding Profiles</h2>
     <div class="skills">
         <div class="card">
@@ -275,7 +319,7 @@
 </section>
 
 
-<section class="contact">
+<section id="contact" class="contact">
     <h2>Contact</h2>
     <a href="mailto:langaliyadevansh68@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/devansh-langaliya-953656295" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -284,7 +328,7 @@
     </a>
 </section>
 
-<section>
+<!-- <section>
     <h2>Currently Learning</h2>
     <div class="skills">
         <div class="card">
@@ -296,7 +340,7 @@
             </ul>
         </div>
     </div>
-</section>
+</section> -->
 
 <footer>
     <p>© 2025 Devansh Langaliya</p>
@@ -304,6 +348,21 @@
         Built with HTML & CSS | Hosted on GitHub Pages
     </p>
 </footer>
+
+<script>
+const hiddenElements = document.querySelectorAll('.hidden');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+hiddenElements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
